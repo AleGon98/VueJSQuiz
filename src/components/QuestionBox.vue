@@ -66,6 +66,12 @@ export default {
         selectAnswer(index){
             this.selectedIndex = index
         },
+        
+        shuffleAnswers() {
+            let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
+            this.shuffledAnswers = _.shuffle(answers)
+            this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
+        },
         submitAnswer() {
             let isCorrect = false
 
@@ -77,11 +83,7 @@ export default {
 
             this.increment(isCorrect)
         },
-        shuffleAnswers() {
-            let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
-            this.shuffledAnswers = _.shuffle(answers)
-            this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
-        },
+        
         answerClass(index) {
                 let answerClass = ''
 
